@@ -82,7 +82,7 @@ void sortedInsert(struct Car cars[], int &len,
                   const double tax,
                   const double totalPrice,
                   const int rankOfAge) {
-    int i = len-1;
+    int i = len - 1;
     for (; i >= 0 && strcmp(cars[i].id, id) > 0; i--) { // time complexity O(n)
         cars[i + 1] = cars[i];
     }
@@ -157,18 +157,16 @@ void searchByBrand(struct Car cars[], const int len) {
     scanf("%s", brand);
     // traversal every element, matching
     int i = 0;
-    for(; i < len;i++){
-        if(strcmp(cars[i].brand, brand)==0)
+    for (; i < len; i++) {
+        if (strcmp(cars[i].brand, brand) == 0)
             break;
     }
-    if(i == len){
+    if (i == len) {
         printf("\nNot exist!\n");
-    }else{
+    } else {
         printf("Car Info: ");
         printCar(cars[i]);
     }
-
-
 
 
 }
@@ -207,17 +205,17 @@ void deleteCarByEngine(struct Car cars[], int &len) {
     printf("enter engine: ");
     scanf("%s", engine);
     int i = 0;
-    for(; i< len; i++){
-        if(strcmp(cars[i].engine, engine)==0)
+    for (; i < len; i++) {
+        if (strcmp(cars[i].engine, engine) == 0)
             break;
     }
 
-    if(i == len)    {printf("No this engine exist");}
-    else{
+    if (i == len) { printf("No this engine exist"); }
+    else {
         printCar(cars[i]);
         printf("has been removed");
-        for(;i< len-1;i++){
-            cars[i] = cars[i+1];
+        for (; i < len - 1; i++) {
+            cars[i] = cars[i + 1];
         }
         len--; // Decreased  by 1
     }
@@ -225,9 +223,9 @@ void deleteCarByEngine(struct Car cars[], int &len) {
 
 void calculateTotalPrice(struct Car cars[], const int len) {
     printf("Progress ...");
-    for(int i = 0; i< len; i++){
+    for (int i = 0; i < len; i++) {
         cars[i].depreciation = cars[i].age * DEPRECIATION_PER_YEAR;
-        cars[i].totalPrice = (cars[i].price -cars[i].depreciation) *(1+ cars[i].tax);
+        cars[i].totalPrice = (cars[i].price - cars[i].depreciation) * (1 + cars[i].tax);
     }
 
     printf("Done!");
@@ -239,24 +237,24 @@ void calculateTotalPriceThenPrint(struct Car cars[], const int len) {
 
 void getThirdAgeThenPrint(struct Car cars[], int len) {
 
-    if(len<3) printf("Less than 3 car info");
+    if (len < 3) printf("Less than 3 car info");
     int first, second, third;
-    if(cars[0].age> cars[1].age){
+    if (cars[0].age > cars[1].age) {
         first = 0;
-        second =1;
-    } else{
+        second = 1;
+    } else {
         first = 1;
         second = 0;
     }
     for (int i = 2; i < len; ++i) {
-        if(cars[i].age >= cars[first].age){
+        if (cars[i].age >= cars[first].age) {
             third = second;
             second = first;
             first = i;
-        }else if(cars[i].age >= cars[second].age){
+        } else if (cars[i].age >= cars[second].age) {
             third = second;
             second = i;
-        }else if(cars[i].age >= cars[third].age){
+        } else if (cars[i].age >= cars[third].age) {
             third = i;
         }
     }
